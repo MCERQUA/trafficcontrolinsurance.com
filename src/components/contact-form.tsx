@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { CheckCircle2 } from 'lucide-react'
 
+const WEBHOOK_URL = `https://josh.jam-bot.com/social-api/api/leads/webhook/netlify?tenant=josh&site=trafficcontrolinsurance.com`
+
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   if (submitted) {
@@ -14,7 +16,18 @@ export default function ContactForm() {
     )
   }
   return (
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/quote/thank-you" onSubmit={() => setSubmitted(true)} className="grid gap-4">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/quote/thank-you" onSubmit={async (e) => {
+      e.preventDefault()
+      const form = e.currentTarget
+      const formData = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
+      try {
+        await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: 'contact', source: 'trafficcontrolinsurance.com', ...formData }) })
+      } catch {}
+      try {
+        await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
+      } catch {}
+      setSubmitted(true)
+    }} className="grid gap-4">
       <input type="hidden" name="form-name" value="contact" />
       <p className="hidden"><label>Skip: <input name="bot-field" /></label></p>
       <div>

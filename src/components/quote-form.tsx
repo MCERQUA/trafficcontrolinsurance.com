@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { CheckCircle2 } from 'lucide-react'
 
+const WEBHOOK_URL = `https://josh.jam-bot.com/social-api/api/leads/webhook/netlify?tenant=josh&site=trafficcontrolinsurance.com`
+
 export default function QuoteForm({ formName = 'quote' }: { formName?: string }) {
   const [submitted, setSubmitted] = useState(false)
   const fields = [
@@ -29,7 +31,18 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
-      onSubmit={() => setSubmitted(true)}
+      onSubmit={async (e) => {
+        e.preventDefault()
+        const form = e.currentTarget
+        const formData = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
+        try {
+          await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: formName, source: 'trafficcontrolinsurance.com', ...formData }) })
+        } catch {}
+        try {
+          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
+        } catch {}
+        setSubmitted(true)
+      }}
       action="/quote/thank-you"
       className="grid gap-4 sm:grid-cols-2"
     >
