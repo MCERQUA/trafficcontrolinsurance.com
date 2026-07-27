@@ -39,7 +39,7 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
           await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: formName, source: 'trafficcontrolinsurance.com', ...formData }) })
         } catch {}
         try {
-          await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
+          await fetch('/__forms.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })
         } catch {}
         setSubmitted(true)
       }}
