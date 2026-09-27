@@ -42,11 +42,6 @@ const STATS = [
   { icon: Clock, value: '15 min', label: 'Quote Turnaround' },
 ]
 
-const TESTIMONIALS = [
-  { name: 'Marcus D.', role: 'Owner, Highway TC Services', quote: 'CCA understood our work-zone exposure better than any agent we had used. They got our GL and umbrella limits up to DOT spec so we could finally bid the big interstate jobs.' },
-  { name: 'Renee P.', role: 'Operations Manager, Flagging Co.', quote: 'Our workers comp was killing us until CCA reclassed our flaggers correctly and shopped real traffic control carriers. The savings paid for two new arrow boards.' },
-  { name: 'Tyler S.', role: 'President, Roadway Safety LLC', quote: 'A pilot car got rear-ended on a state job. Claim was handled in days, not weeks. These folks know flaggers and they answer the phone.' },
-]
 
 const FAQS = [
   { q: 'What states require traffic control companies to carry insurance?', a: 'Effectively all of them. Every state DOT and nearly every prime contractor requires traffic control and flagging subcontractors to carry general liability (often $1M–$2M per occurrence), workers compensation, and commercial auto before you can step onto a job site. Many large interstate contracts also require $2M–$5M in umbrella/excess coverage.' },
@@ -233,30 +228,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. TESTIMONIALS */}
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto">
-              <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">Client Results</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy">Trusted by Traffic Control Owners</h2>
-            </div>
-          </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.1}>
-                <figure className="h-full rounded-xl border border-gray-200 bg-brand-light p-7">
-                  <div className="flex gap-1 text-brand-yellow">
-                    {Array.from({ length: 5 }).map((_, j) => (<Star key={j} className="h-4 w-4 fill-current" />))}
-                  </div>
-                  <blockquote className="mt-4 text-brand-dark/90">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <figcaption className="mt-4 font-semibold text-brand-navy">{t.name}<span className="block text-sm font-normal text-brand-dark/70">{t.role}</span></figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 9. FAQ */}
       <section className="bg-brand-light py-20">
