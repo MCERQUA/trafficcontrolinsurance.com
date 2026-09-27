@@ -49,9 +49,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <article className="bg-white py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-orange hover:underline"><ArrowLeft className="h-4 w-4" /> All articles</Link>
-          <h1 className="mt-5 font-heading text-4xl font-bold text-brand-navy text-balance">{meta.title}</h1>
+          <h1 className="mt-5 font-heading text-4xl font-bold text-brand-asphalt text-balance">{meta.title}</h1>
           <div className="mt-4 flex items-center gap-2 text-sm text-brand-dark/60"><Calendar className="h-4 w-4" />{new Date(meta.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {meta.readingTime}</div>
-          <div className="prose prose-lg mt-8 max-w-none prose-headings:font-heading prose-headings:text-brand-navy prose-a:text-brand-orange prose-strong:text-brand-navy">
+          <div className="prose prose-lg mt-8 max-w-none prose-headings:font-heading prose-headings:text-brand-asphalt prose-a:text-brand-orange prose-strong:text-brand-asphalt">
             <Post />
           </div>
         </div>

@@ -70,7 +70,7 @@ export default function Home() {
       {/* 1. HERO */}
       <section className="relative isolate overflow-hidden">
         <Image src="/images/hero.jpg" alt="Traffic control flaggers working in a road construction zone" fill priority className="object-cover -z-10" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-navy/95 via-brand-navy/85 to-brand-navy/55" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-asphalt/95 via-brand-asphalt/85 to-brand-asphalt/55" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-28 sm:py-36">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand-orange/20 px-4 py-1.5 text-sm font-semibold text-brand-yellow ring-1 ring-brand-orange/40">
@@ -86,7 +86,7 @@ export default function Home() {
               <Link href="/quote" className="rounded-md bg-brand-orange px-8 py-3.5 text-center font-heading text-base font-bold text-white hover:bg-orange-600 transition-colors">
                 Get Free Quote
               </Link>
-              <a href={`tel:${SITE.phoneRaw}`} className="flex items-center justify-center gap-2 rounded-md border-2 border-white px-8 py-3 font-heading text-base font-bold text-white hover:bg-white hover:text-brand-navy transition-colors">
+              <a href={`tel:${SITE.phoneRaw}`} className="flex items-center justify-center gap-2 rounded-md border-2 border-white px-8 py-3 font-heading text-base font-bold text-white hover:bg-white hover:text-brand-asphalt transition-colors">
                 <Phone className="h-5 w-5" /> {SITE.phone}
               </a>
             </div>
@@ -95,7 +95,7 @@ export default function Home() {
       </section>
 
       {/* 2. TRUST BAR */}
-      <section className="bg-brand-navy border-t border-white/10">
+      <section className="bg-brand-asphalt border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 grid grid-cols-2 md:grid-cols-5 gap-4 text-center text-sm font-semibold text-gray-200">
           {['20+ Years Experience', 'All 50 States Licensed', 'A-Rated Carriers', 'Former Contractor Expertise', '2-Hour Claims Response'].map((t) => (
             <div key={t} className="flex items-center justify-center gap-2">
@@ -111,7 +111,7 @@ export default function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">The Difference</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy text-balance">Why Traffic Control Insurance Is Different</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt text-balance">Why Traffic Control Insurance Is Different</h2>
               <p className="mt-4 text-lg text-brand-dark/80">
                 Generic contractor policies were never written for crews who stand in live traffic. The risk profile is unique, and so should be your coverage.
               </p>
@@ -126,7 +126,7 @@ export default function Home() {
               <Reveal key={c.title} delay={i * 0.1}>
                 <div className="h-full rounded-xl border border-gray-200 bg-brand-light p-7 hover:border-brand-orange transition-colors">
                   <c.icon className="h-10 w-10 text-brand-orange" />
-                  <h3 className="mt-4 font-heading text-xl font-bold text-brand-navy">{c.title}</h3>
+                  <h3 className="mt-4 font-heading text-xl font-bold text-brand-asphalt">{c.title}</h3>
                   <p className="mt-2 text-brand-dark/80">{c.desc}</p>
                 </div>
               </Reveal>
@@ -141,7 +141,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto">
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">Coverages</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy">Insurance Built for Your Operation</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt">Insurance Built for Your Operation</h2>
               <p className="mt-4 text-lg text-brand-dark/80">Every coverage a traffic control or flagging contractor needs to work, bid, and grow with confidence.</p>
             </div>
           </Reveal>
@@ -149,10 +149,10 @@ export default function Home() {
             {SERVICES.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.07}>
                 <Link href={s.href} className="group block h-full rounded-xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-md hover:border-brand-orange transition-all">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-navy text-white group-hover:bg-brand-orange transition-colors">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-asphalt text-white group-hover:bg-brand-orange transition-colors">
                     <s.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-4 font-heading text-xl font-bold text-brand-navy">{s.title}</h3>
+                  <h3 className="mt-4 font-heading text-xl font-bold text-brand-asphalt">{s.title}</h3>
                   <p className="mt-2 text-brand-dark/80">{s.desc}</p>
                   <span className="mt-4 inline-block font-semibold text-brand-orange">Learn more →</span>
                 </Link>
@@ -173,7 +173,7 @@ export default function Home() {
           <Reveal delay={0.1}>
             <div>
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">What We Cover</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy">Protection Across Every Work-Zone Risk</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt">Protection Across Every Work-Zone Risk</h2>
               <ul className="mt-6 space-y-3">
                 {COVERS.map((c) => (
                   <li key={c} className="flex items-start gap-3">
@@ -193,7 +193,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center max-w-2xl mx-auto">
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">Simple Process</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy">Three Steps to Getting Covered</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt">Three Steps to Getting Covered</h2>
             </div>
           </Reveal>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -204,7 +204,7 @@ export default function Home() {
                     <s.icon className="h-7 w-7" />
                   </div>
                   <div className="mt-3 font-heading text-sm font-bold text-brand-orange">STEP {i + 1}</div>
-                  <h3 className="mt-1 font-heading text-xl font-bold text-brand-navy">{s.title}</h3>
+                  <h3 className="mt-1 font-heading text-xl font-bold text-brand-asphalt">{s.title}</h3>
                   <p className="mt-2 text-brand-dark/80">{s.desc}</p>
                 </div>
               </Reveal>
@@ -214,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* 7. STATS */}
-      <section className="bg-brand-navy py-16">
+      <section className="bg-brand-asphalt py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
@@ -235,14 +235,14 @@ export default function Home() {
           <Reveal>
             <div className="text-center">
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">FAQ</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy">Traffic Control Insurance Questions</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt">Traffic Control Insurance Questions</h2>
             </div>
           </Reveal>
           <div className="mt-10 space-y-4">
             {FAQS.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.05}>
                 <details className="group rounded-xl border border-gray-200 bg-white p-6">
-                  <summary className="flex cursor-pointer items-center justify-between font-heading text-lg font-semibold text-brand-navy">
+                  <summary className="flex cursor-pointer items-center justify-between font-heading text-lg font-semibold text-brand-asphalt">
                     {f.q}
                     <span className="ml-4 text-brand-orange group-open:rotate-45 transition-transform text-2xl leading-none">+</span>
                   </summary>
@@ -260,7 +260,7 @@ export default function Home() {
           <Reveal>
             <div>
               <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">Get Started</span>
-              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-navy text-balance">Get Your Free Traffic Control Insurance Quote</h2>
+              <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-brand-asphalt text-balance">Get Your Free Traffic Control Insurance Quote</h2>
               <p className="mt-4 text-lg text-brand-dark/80">
                 Tell us about your crew and equipment. A licensed specialist will build a tailored program and get you a certificate fast, so you never lose a bid to a paperwork delay.
               </p>

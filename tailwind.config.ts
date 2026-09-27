@@ -5,7 +5,7 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          navy: '#1A3A5C',
+          asphalt: '#2B2622', // was navy; renamed so the markup stops reading as navy
           orange: '#E67E22',
           yellow: '#F1C40F',
           dark: '#212529',

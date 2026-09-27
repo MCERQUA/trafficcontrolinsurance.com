@@ -13,6 +13,7 @@ const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-opensans' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico", sizes: "32x32" }] },
   title: {
     default: 'Traffic Control Insurance | Coverage for Flagging Contractors',
     template: '%s | Traffic Control Insurance',

@@ -21,7 +21,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-heading text-xl font-bold text-brand-navy">
+          <Link href="/" className="flex items-center gap-2 font-heading text-xl font-bold text-brand-asphalt">
             <Cone className="h-7 w-7 text-brand-orange" />
             <span>Traffic Control<span className="text-brand-orange">Insurance</span></span>
           </Link>
@@ -33,14 +33,14 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="hidden lg:flex items-center gap-3">
-            <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-1.5 text-sm font-bold text-brand-navy">
+            <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-1.5 text-sm font-bold text-brand-asphalt">
               <Phone className="h-4 w-4" /> {SITE.phone}
             </a>
             <Link href="/quote" className="rounded-md bg-brand-orange px-4 py-2 text-sm font-bold text-white hover:bg-orange-600 transition-colors">
               Get Free Quote
             </Link>
           </div>
-          <button className="lg:hidden text-brand-navy" onClick={() => setOpen(!open)} aria-label="Menu">
+          <button className="lg:hidden text-brand-asphalt" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
@@ -55,7 +55,7 @@ export default function Navbar() {
           <Link href="/quote" onClick={() => setOpen(false)} className="block rounded-md bg-brand-orange px-4 py-2 text-center text-sm font-bold text-white">
             Get Free Quote
           </Link>
-          <a href={`tel:${SITE.phoneRaw}`} className="block text-center text-sm font-bold text-brand-navy">{SITE.phone}</a>
+          <a href={`tel:${SITE.phoneRaw}`} className="block text-center text-sm font-bold text-brand-asphalt">{SITE.phone}</a>
         </div>
       )}
     </header>

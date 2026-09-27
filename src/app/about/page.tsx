@@ -19,7 +19,7 @@ export default function Page() {
   ]
   return (
     <>
-      <section className="bg-brand-navy py-24">
+      <section className="bg-brand-asphalt py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">About Us</span>
           <h1 className="mt-2 font-heading text-4xl sm:text-5xl font-bold text-white max-w-3xl text-balance">Insurance Specialists Who Understand Traffic Control</h1>
@@ -36,7 +36,7 @@ export default function Page() {
           </Reveal>
           <Reveal delay={0.1}>
             <div>
-              <h2 className="font-heading text-3xl font-bold text-brand-navy">Built by a Contractor, for Contractors</h2>
+              <h2 className="font-heading text-3xl font-bold text-brand-asphalt">Built by a Contractor, for Contractors</h2>
               <p className="mt-4 text-lg text-brand-dark/85">Our founder, Josh Cotner, spent years in the field before becoming an insurance specialist. That insider perspective is why we get the things generic agents miss, the difference between a flagger and a pilot car operator, why your experience mod spiked after one struck-by claim, and exactly which endorsements a state DOT contract demands.</p>
               <p className="mt-4 text-lg text-brand-dark/85">We have spent more than 20 years building insurance programs for the highest-risk specialty trades. Today we are licensed in all 50 states and serve nearly 300 contractors, with a focus on the road and highway trades where getting coverage right is a matter of safety, compliance, and survival.</p>
             </div>
@@ -52,7 +52,7 @@ export default function Page() {
                 <div className="flex gap-4 rounded-xl border border-gray-200 bg-white p-7">
                   <v.icon className="h-10 w-10 flex-shrink-0 text-brand-orange" />
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-brand-navy">{v.title}</h3>
+                    <h3 className="font-heading text-xl font-bold text-brand-asphalt">{v.title}</h3>
                     <p className="mt-2 text-brand-dark/80">{v.desc}</p>
                   </div>
                 </div>

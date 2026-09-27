@@ -21,15 +21,15 @@ export default function Page() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 grid gap-10 lg:grid-cols-2">
         <div>
           <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange">Contact</span>
-          <h1 className="mt-2 font-heading text-4xl font-bold text-brand-navy text-balance">Talk to a Traffic Control Insurance Specialist</h1>
+          <h1 className="mt-2 font-heading text-4xl font-bold text-brand-asphalt text-balance">Talk to a Traffic Control Insurance Specialist</h1>
           <p className="mt-4 text-lg text-brand-dark/85">Have a question about coverage, a certificate request, or a renewal? Reach out and a real specialist will help, no call centers.</p>
           <ul className="mt-8 space-y-5">
             {items.map((it) => (
               <li key={it.label} className="flex items-start gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-navy text-white"><it.icon className="h-5 w-5" /></div>
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-asphalt text-white"><it.icon className="h-5 w-5" /></div>
                 <div>
                   <div className="text-sm font-semibold uppercase tracking-wide text-brand-orange">{it.label}</div>
-                  {it.href ? <a href={it.href} className="text-brand-navy font-semibold hover:text-brand-orange break-all">{it.value}</a> : <div className="text-brand-navy font-semibold">{it.value}</div>}
+                  {it.href ? <a href={it.href} className="text-brand-asphalt font-semibold hover:text-brand-orange break-all">{it.value}</a> : <div className="text-brand-asphalt font-semibold">{it.value}</div>}
                 </div>
               </li>
             ))}

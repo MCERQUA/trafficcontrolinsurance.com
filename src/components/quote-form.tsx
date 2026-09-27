@@ -18,7 +18,7 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
     return (
       <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center">
         <CheckCircle2 className="mx-auto h-12 w-12 text-green-600" />
-        <h3 className="mt-4 font-heading text-2xl font-bold text-brand-navy">Request Received</h3>
+        <h3 className="mt-4 font-heading text-2xl font-bold text-brand-asphalt">Request Received</h3>
         <p className="mt-2 text-brand-dark">
           Thanks. A licensed CCA specialist will reach out within one business hour with your traffic control insurance quote.
         </p>
@@ -57,7 +57,7 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       </p>
       {fields.map((f) => (
         <div key={f.name} className={f.name === 'message' ? 'sm:col-span-2' : ''}>
-          <label className="block text-sm font-semibold text-brand-navy mb-1">{f.label}</label>
+          <label className="block text-sm font-semibold text-brand-asphalt mb-1">{f.label}</label>
           <input
             type={f.type}
             name={f.name}
@@ -67,11 +67,11 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         </div>
       ))}
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">State</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">State</label>
         <input type="text" name="state" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Company Type</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Company Type</label>
         <select name="companyType" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
           <option>Traffic Control Company</option>
           <option>Flagging Contractor</option>
@@ -79,51 +79,51 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         </select>
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Number of Flaggers</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Number of Flaggers</label>
         <input type="number" name="numberOfFlaggers" min="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Years in Business</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Years in Business</label>
         <input type="number" name="yearsInBusiness" min="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Street Address</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Street Address</label>
         <input type="text" name="streetAddress" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">City</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">City</label>
         <input type="text" name="city" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">ZIP Code</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">ZIP Code</label>
         <input type="text" name="zip" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">FEIN (Federal Tax ID)</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">FEIN (Federal Tax ID)</label>
         <input type="text" name="fein" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Year Business Started</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Year Business Started</label>
         <input type="number" name="yearBusinessStarted" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Current or Prior Carrier</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Current or Prior Carrier</label>
         <input type="text" name="priorCarrierName" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Current or Prior Policy Number</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Current or Prior Policy Number</label>
         <input type="text" name="priorPolicyNumber" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Policy Expiration Date</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Policy Expiration Date</label>
         <input type="date" name="priorPolicyExpiration" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Description of Your Business</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Description of Your Business</label>
         <textarea name="businessDescription" rows={3} required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
-        <label className="block text-sm font-semibold text-brand-navy mb-1">Tell us about your operation</label>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Tell us about your operation</label>
         <textarea name="message" rows={4} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">

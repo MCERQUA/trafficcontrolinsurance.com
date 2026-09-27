@@ -4,7 +4,7 @@ import { SITE } from '@/lib/utils'
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy text-gray-200">
+    <footer className="bg-brand-asphalt text-gray-200">
       <div className="h-2 chevron-stripe" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 grid gap-10 md:grid-cols-4">
         <div>
