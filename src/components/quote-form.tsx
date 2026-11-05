@@ -122,6 +122,26 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Description of Your Business</label>
         <textarea name="businessDescription" rows={3} required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Desired Effective Date</label>
+        <input type="date" name="effective_date" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Desired Coverage Limits</label>
+        <input type="text" name="limits_requested" placeholder="$1,000,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Annual Gross Revenue</label>
+        <input type="text" name="gross_revenue" placeholder="$250,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Claims in Last 3 Years (count)</label>
+        <input type="number" name="losses_3yr_count" min="0" placeholder="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div className="sm:col-span-2">
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Claim Details (if any)</label>
+        <textarea name="losses_3yr_details" rows={2} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
       <div className="sm:col-span-2">
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Tell us about your operation</label>
         <textarea name="message" rows={4} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
