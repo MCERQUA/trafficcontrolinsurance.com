@@ -7,6 +7,7 @@ const WEBHOOK_URL = `https://josh.jam-bot.com/social-api/api/leads/webhook/netli
 export default function QuoteForm({ formName = 'quote' }: { formName?: string }) {
   const [submitted, setSubmitted] = useState(false)
   const [failed, setFailed] = useState(false)
+  const [coverageError, setCoverageError] = useState(false)
   const fields = [
     { name: 'name', label: 'Full Name', type: 'text', required: true },
     { name: 'businessName', label: 'Business Name', type: 'text', required: true },
@@ -34,11 +35,25 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       netlify-honeypot="bot-field"
       onSubmit={async (e) => {
         e.preventDefault()
+        const form = e.currentTarget
+        // coverageTypes is a checkbox group sharing one name - HTML `required` doesn't span
+        // multiple same-named checkboxes, so enforce "at least one checked" here and block
+        // submit with an inline error instead of silently dropping the field.
+        const coverageChecked = Array.from(
+          form.querySelectorAll<HTMLInputElement>('input[name="coverageTypes"]:checked')
+        ).map((el) => el.value)
+        if (coverageChecked.length === 0) {
+          setCoverageError(true)
+          return
+        }
+        setCoverageError(false)
         // A lead is captured if a delivery channel ACCEPTED it. fetch() does not reject
         // on a 4xx/5xx, so each response status has to be inspected explicitly.
         let captured = false;
-        const form = e.currentTarget
         const formData = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
+        // Object.fromEntries collapses repeated keys to the last value, which would drop all
+        // but one checked coverage option - overwrite with the full joined list.
+        formData.coverageTypes = coverageChecked.join(', ')
         try {
           captured = (await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: formName, source: 'trafficcontrolinsurance.com', ...formData }) })).ok || captured
         } catch {}
@@ -71,11 +86,27 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         <input type="text" name="state" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">States of Operation</label>
+        <input type="text" name="statesOfOperation" required placeholder="e.g. CA, AZ, NV" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Company Type</label>
-        <select name="companyType" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
+        <select name="tradeType" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
           <option>Traffic Control Company</option>
           <option>Flagging Contractor</option>
           <option>Both</option>
+        </select>
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Entity Type</label>
+        <select name="entityType" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
+          <option value="">Select one</option>
+          <option>Individual/Sole prop</option>
+          <option>Partnership</option>
+          <option>Corporation</option>
+          <option>LLC</option>
+          <option>Joint venture</option>
+          <option>Other</option>
         </select>
       </div>
       <div>
@@ -85,6 +116,22 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Years in Business</label>
         <input type="number" name="yearsInBusiness" min="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Uses Subcontractors</label>
+        <select name="usesSubcontractors" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
+          <option value="">Select one</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Full-Time Employees</label>
+        <input type="number" name="fullTimeEmployees" min="0" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Part-Time Employees</label>
+        <input type="number" name="partTimeEmployees" min="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Street Address</label>
@@ -107,8 +154,16 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         <input type="number" name="yearBusinessStarted" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Currently Insured</label>
+        <select name="currentlyInsured" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
+          <option value="">Select one</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+      <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Current or Prior Carrier</label>
-        <input type="text" name="priorCarrierName" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="text" name="currentCarrier" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Current or Prior Policy Number</label>
@@ -116,7 +171,7 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Policy Expiration Date</label>
-        <input type="date" name="priorPolicyExpiration" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="date" name="currentPolicyExpiration" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Description of Your Business</label>
@@ -124,27 +179,63 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Desired Effective Date</label>
-        <input type="date" name="effective_date" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="date" name="desiredEffectiveDate" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Desired Coverage Limits</label>
-        <input type="text" name="limits_requested" placeholder="$1,000,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="text" name="requestedLimits" placeholder="$1,000,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div className="sm:col-span-2">
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Coverage Types Needed</label>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {[
+            'General Liability',
+            'Workers Comp',
+            'Commercial Auto',
+            'Tools & Equipment (Inland Marine)',
+            'Umbrella/Excess',
+            'Builders Risk',
+            'Professional/E&O',
+            'Bonds',
+            'Other',
+          ].map((option) => (
+            <label key={option} className="flex items-center gap-2 text-sm text-brand-dark">
+              <input type="checkbox" name="coverageTypes" value={option} />
+              {option}
+            </label>
+          ))}
+        </div>
+        {coverageError && (
+          <p role="alert" className="mt-1 text-sm text-red-700">Please select at least one coverage type.</p>
+        )}
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Annual Gross Revenue</label>
-        <input type="text" name="gross_revenue" placeholder="$250,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="text" name="annualRevenue" placeholder="$250,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Largest Project Value</label>
+        <input type="text" name="largestProjectValue" required placeholder="e.g. $500,000" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Losses in Last 3 Years</label>
+        <select name="lossesLast3Years" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange">
+          <option value="">Select one</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
       </div>
       <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Claims in Last 3 Years (count)</label>
-        <input type="number" name="losses_3yr_count" min="0" placeholder="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <input type="number" name="lossCount" min="0" placeholder="0" className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Claim Details (if any)</label>
-        <textarea name="losses_3yr_details" rows={2} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <textarea name="lossDescription" rows={2} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Tell us about your operation</label>
-        <textarea name="message" rows={4} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
+        <textarea name="notes" rows={4} className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div className="sm:col-span-2">
         {failed && (
