@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Oswald, Open_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
@@ -8,8 +8,19 @@ import { SITE } from '@/lib/utils'
 
 const LenisProvider = dynamic(() => import('@/components/lenis-provider'))
 
-const oswald = Oswald({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-oswald' })
-const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-opensans' })
+const oswald = localFont({
+  src: [
+    { path: './fonts/Oswald-variable.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/Oswald-variable.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/Oswald-variable.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/Oswald-variable.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-oswald',
+})
+const openSans = localFont({
+  src: [{ path: './fonts/OpenSans-variable.woff2', weight: '300 800', style: 'normal' }],
+  variable: '--font-opensans',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
