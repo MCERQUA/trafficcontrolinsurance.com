@@ -25,11 +25,20 @@ export default function ContactForm() {
       const form = e.currentTarget
       const formData = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
       try {
-        captured = (await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: 'contact', source: 'trafficcontrolinsurance.com', ...formData }) })).ok || captured
+        const r = await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ form_name: 'contact', source: 'trafficcontrolinsurance.com', ...formData }) })
+        // The webhook answers 200 {ok:true,stored:false} when it drops a body, so a 2xx alone is not
+        // acceptance: require ok:true and stored!==false (an unparseable body counts as a failure).
+        if (r.ok) {
+          const j = await r.json().catch(() => null)
+          if (j && j.ok === true && j.stored !== false) captured = true
+        }
       } catch {}
-      try {
-        captured = (await fetch('/__forms.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })).ok || captured
-      } catch {}
+      // Netlify Forms fallback only when the webhook did not store the lead (no double delivery).
+      if (!captured) {
+        try {
+          captured = (await fetch('/__forms.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData).toString() })).ok || captured
+        } catch {}
+      }
       setFailed(!captured);
       setSubmitted(captured);
     }} className="grid gap-4">
