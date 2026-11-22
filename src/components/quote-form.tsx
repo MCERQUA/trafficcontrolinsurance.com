@@ -175,10 +175,6 @@ export default function QuoteForm({ formName = 'quote' }: { formName?: string })
         <input type="text" name="currentCarrier" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
       <div>
-        <label className="block text-sm font-semibold text-brand-asphalt mb-1">Current or Prior Policy Number</label>
-        <input type="text" name="priorPolicyNumber" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
-      </div>
-      <div>
         <label className="block text-sm font-semibold text-brand-asphalt mb-1">Policy Expiration Date</label>
         <input type="date" name="currentPolicyExpiration" required className="w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange" />
       </div>
