@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import QuoteForm from '@/components/quote-form'
+import QuoteForm from '@/components/quote/TrafficQuoteForm'
 import { Phone, Clock, ShieldCheck, MapPin } from 'lucide-react'
 import { SITE } from '@/lib/utils'
 
@@ -33,7 +33,7 @@ export default function Page() {
           </div>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-          <QuoteForm formName="quote" />
+          <QuoteForm />
         </div>
       </div>
     </section>
